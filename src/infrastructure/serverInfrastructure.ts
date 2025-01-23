@@ -3,13 +3,16 @@ import morgan from "morgan"
 import cors from "cors";
 import config from './common/index'
 import { logger } from "./logger";
+import { SearchRoute } from "../presentation/http/routes/search.route";
 
 export class ServerInfrastructure{
 
     private app: Application
+    private searchRoutes: SearchRoute
 
     constructor(){
         this.app = express();
+        this.searchRoutes = new SearchRoute()
     }
 
 
@@ -20,7 +23,7 @@ export class ServerInfrastructure{
     }
 
     private configRoutes():void {
-        // this.app.use('/',)
+        this.app.use('/api',this.searchRoutes.accessSearchRoutes())
     }
 
     private startListening():void {
