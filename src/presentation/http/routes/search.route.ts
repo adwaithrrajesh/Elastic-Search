@@ -13,6 +13,8 @@ export class SearchRoute{
     }
 
     private initiateRoutes():void{
+        this.router.get('/ping',this.controller.ping.bind(this.controller))
+        this.router.post('/indexData',this.controller.indexData.bind(this.controller))
         this.router.post('/search',this.controller.search.bind(this.controller));
     }
 
